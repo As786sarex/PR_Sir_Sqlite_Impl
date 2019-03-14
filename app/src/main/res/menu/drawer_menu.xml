@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/showAllStudentAct" android:title="Show All Students"/>
+    <item android:id="@+id/showAllCourseAct" android:title="Show All Courses"/>
+    <item android:id="@+id/showAllEnrollAct" android:title="Show All Enroll"/>
+    <item android:id="@+id/showAllBookAdpAct" android:title="Show All Book Adaption"/>
+    <item android:id="@+id/showAllTextAct" android:title="Show All Text Book"/>
+    <item android:id="@+id/showByDept" android:title="5. Show Dept By Publisher"/>
+</menu>
