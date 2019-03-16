@@ -1,33 +1,35 @@
 package com.wildcardenter.myfab.pr_sir_front_end.models;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "TEXT")
-public class Text {
-    @PrimaryKey
-    @NonNull
+public class TextByCs {
+
+
     private int book_isbn;
-    @NonNull
-    private String book_title;
-    @NonNull
-    private String publisher;
-    @NonNull
-    private String author;
 
-    @Ignore
-    @NonNull
-    @ColumnInfo(name = "course")
+    private String book_title;
+
+    private String publisher;
+
+    private String author;
     private int course;
 
-    public Text(int book_isbn, @NonNull String book_title, @NonNull String publisher, @NonNull String author) {
+    public TextByCs(int book_isbn, @NonNull String book_title, @NonNull String publisher, @NonNull String author) {
         this.book_isbn = book_isbn;
         this.book_title = book_title;
         this.publisher = publisher;
         this.author = author;
+    }
+
+    public TextByCs(int book_isbn, String book_title, String publisher, String author, int course) {
+        this.book_isbn = book_isbn;
+        this.book_title = book_title;
+        this.publisher = publisher;
+        this.author = author;
+        this.course = course;
+    }
+
+    public TextByCs() {
     }
 
     public int getBook_isbn() {

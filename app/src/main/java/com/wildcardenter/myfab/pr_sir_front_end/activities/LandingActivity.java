@@ -56,6 +56,9 @@ public class LandingActivity extends AppCompatActivity implements NavigationView
         else if (id==R.id.showByDept){
             startActivity(new Intent(this,DeptByPublisherActivity.class));
         }
+        else if (id==R.id.showAllBookByCs){
+            startActivity(new Intent(this,BookByCsCourseActivity.class));
+        }
 
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);

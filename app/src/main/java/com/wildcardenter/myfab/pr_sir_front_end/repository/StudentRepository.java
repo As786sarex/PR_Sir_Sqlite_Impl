@@ -14,6 +14,7 @@ import com.wildcardenter.myfab.pr_sir_front_end.models.Course;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Enroll;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Student;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Text;
+import com.wildcardenter.myfab.pr_sir_front_end.models.TextByCs;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class StudentRepository {
     private LiveData<List<Text>> allTextList;
     private LiveData<List<Enroll>> allEnrollList;
     private LiveData<List<Book_Adaptation>> allAdaptList;
+    private LiveData<List<TextByCs>> allTextListByCs;
 
 
 
@@ -45,6 +47,7 @@ public class StudentRepository {
         allTextList=textDao.getAllText();
         allEnrollList=enrollDao.getAllEnrolls();
         allAdaptList=book_adapt_dao.getAllAdaptation();
+        allTextListByCs=textDao.getAllBookOfferedByCs();
 
     }
     public LiveData<List<String>> getDeptByPublisher(String publisher){
@@ -139,6 +142,8 @@ public class StudentRepository {
     public LiveData<List<Text>> getAllText(){return allTextList;}
     public LiveData<List<Enroll>> getAllEnroll(){return allEnrollList;}
     public LiveData<List<Book_Adaptation >> getAllAdapt(){ return allAdaptList;}
+    public LiveData<List<TextByCs>> getAllTextListByCs(){return allTextListByCs;}
+
 
 
 }

@@ -20,7 +20,9 @@ public interface CourseDao {
     @Query("select * from COURSE order by course")
     LiveData<List<Course>> getAllCourses();
 
-    @Query("select distinct dept from COURSE natural join BOOK_ADAPTATION natural join TEXT where publisher like :pub")
+    @Query("select dept from course natural join book_adaptation natural join text where publisher like :pub" +
+            " EXCEPT " +
+            "select dept from course natural join book_adaptation natural join text where publisher not like :pub")
     LiveData<List<String>> getDeptBySpecificPub(String pub);
 
 }

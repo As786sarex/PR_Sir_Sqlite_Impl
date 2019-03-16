@@ -5,5 +5,6 @@
     <item android:id="@+id/showAllEnrollAct" android:title="Show All Enroll"/>
     <item android:id="@+id/showAllBookAdpAct" android:title="Show All Book Adaption"/>
     <item android:id="@+id/showAllTextAct" android:title="Show All Text Book"/>
+    <item android:id="@+id/showAllBookByCs" android:title="4. show all book by cs dept >2"/>
     <item android:id="@+id/showByDept" android:title="5. Show Dept By Publisher"/>
 </menu>
