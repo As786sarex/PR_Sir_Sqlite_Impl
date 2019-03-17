@@ -1,62 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginTop="48dp">
+    android:layout_marginTop="48dp"
+    tools:context=".activities.LandingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="16dp">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/schemaStudent"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="---- Question No 1 Queries ----"
+            android:textColor="#D50000"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#cfcfcf" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/createTableQuery"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/schemaCourse"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="---- Question No 2 Queries ----"
+            android:textColor="#D50000"
+            android:textSize="20sp"
             android:textStyle="bold" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#cfcfcf" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/schemaEnroll"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/insertIntoQuery"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#cfcfcf" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/schemaAdapt"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="---- Question No 3 Queries ----"
+            android:textColor="#D50000"
+            android:textSize="20sp"
             android:textStyle="bold" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#cfcfcf" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/schemaBook"
-            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="\n\nCan Be Derived From Question Number 2 Queries\n\n"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="---- Question No 4 Query ----"
+            android:textColor="#D50000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/QuestionNo4Query"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="---- Question No 5 Query ----"
+            android:textColor="#D50000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/Question5Query"
+            android:textColor="@color/black"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 

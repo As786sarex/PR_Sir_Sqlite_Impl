@@ -9,10 +9,12 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.RoomWarnings;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
+@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 public interface TextDao {
     @Insert(onConflict = REPLACE)
     void insertText(Text text);

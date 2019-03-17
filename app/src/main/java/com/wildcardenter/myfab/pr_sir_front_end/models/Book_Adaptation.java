@@ -3,6 +3,7 @@ package com.wildcardenter.myfab.pr_sir_front_end.models;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 import static androidx.room.ForeignKey.CASCADE;
 
