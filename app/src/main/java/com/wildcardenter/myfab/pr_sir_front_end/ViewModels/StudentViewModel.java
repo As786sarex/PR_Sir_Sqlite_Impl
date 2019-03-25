@@ -12,23 +12,29 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 public class StudentViewModel extends AndroidViewModel {
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        repository=null;
-    }
-
     private StudentRepository repository;
     private LiveData<List<Student>> allStudentList;
     public StudentViewModel(@NonNull Application application) {
         super(application);
-        repository=new StudentRepository(application);
-        allStudentList=repository.getAllstudent();
+        repository = new StudentRepository(application);
+        allStudentList = repository.getAllstudent();
     }
-    public LiveData<List<Student>> getAllStudentList(){
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        repository = null;
+    }
+
+    public LiveData<List<Student>> getAllStudentList() {
         return allStudentList;
     }
-    public void insertStudent(Student student){
+
+    public void insertStudent(Student student) {
         repository.insertStudent(student);
+    }
+
+    public void deleteStudent(Student student) {
+        repository.deleteStudent(student);
     }
 }

@@ -17,16 +17,26 @@ public class BookAdaptViewModel extends AndroidViewModel {
 
     public BookAdaptViewModel(@NonNull Application application) {
         super(application);
-        repository=new StudentRepository(application);
-        allBookList=repository.getAllAdapt();
+        repository = new StudentRepository(application);
+        allBookList = repository.getAllAdapt();
     }
-    public void insertAdapt(Book_Adaptation adaptation){repository.insertAdapt(adaptation);}
-    public LiveData<List<Book_Adaptation>> getAllAdaptList(){return allBookList;}
+
+    public void insertAdapt(Book_Adaptation adaptation) {
+        repository.insertAdapt(adaptation);
+    }
+
+    public void deleteAdapt(Book_Adaptation adaptation) {
+        repository.deleteAdaptation(adaptation);
+    }
+
+    public LiveData<List<Book_Adaptation>> getAllAdaptList() {
+        return allBookList;
+    }
 
     @Override
 
     protected void onCleared() {
         super.onCleared();
-        repository=null;
+        repository = null;
     }
 }

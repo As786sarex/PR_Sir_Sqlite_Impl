@@ -33,6 +33,10 @@ public class CourseViewModel extends AndroidViewModel {
         repository.insertCourse(course);
     }
 
+    public void deleteCourse(Course course) {
+        repository.deleteCourse(course);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

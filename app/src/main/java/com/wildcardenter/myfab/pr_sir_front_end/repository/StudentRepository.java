@@ -68,6 +68,16 @@ public class StudentRepository {
     public void insertAdapt(Book_Adaptation adaptation){
         new insertAdaptAsync(book_adapt_dao).execute(adaptation);
     }
+
+    public void deleteStudent(Student student){ new deleteStudentAsync(studentDao).execute(student);}
+    public void deleteCourse(Course course){new deleteCourseAsync(courseDao).execute(course);}
+    public void deleteEnroll(Enroll enroll){new deleteEnrollAsync(enrollDao).execute(enroll);}
+    public void deleteAdaptation(Book_Adaptation book_adaptation){new deleteAdaptAsync(book_adapt_dao).execute(book_adaptation);}
+    public void deleteText(Text text){new deleteTextAsync(textDao).execute(text);}
+
+
+
+    //All insertion asynctask is performed here
     private static class insertStudentAsync extends AsyncTask<Student,Void,Void>{
 
         private StudentDao dao;
@@ -135,6 +145,87 @@ public class StudentRepository {
             return null;
         }
     }
+
+
+    //All deletion asynctask is performed here
+
+    private static class deleteStudentAsync extends AsyncTask<Student,Void,Void>{
+
+        private StudentDao dao;
+
+        public deleteStudentAsync(StudentDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Student... students) {
+            dao.deleteStudent(students[0]);
+            return null;
+        }
+    }
+
+    private static class deleteCourseAsync extends AsyncTask<Course,Void,Void>{
+
+        private CourseDao dao;
+
+        public deleteCourseAsync(CourseDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Course... courses) {
+            dao.deleteCourse(courses[0]);
+            return null;
+        }
+    }
+
+    private static class deleteEnrollAsync extends AsyncTask<Enroll,Void,Void>{
+
+        private EnrollDao dao;
+
+        public deleteEnrollAsync(EnrollDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Enroll... enrolls) {
+            dao.deleteEnroll(enrolls[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAdaptAsync extends AsyncTask<Book_Adaptation,Void,Void>{
+
+        private Book_Adapt_Dao dao;
+
+        public deleteAdaptAsync(Book_Adapt_Dao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Book_Adaptation... book_adaptations) {
+            dao.deleteAdaptation(book_adaptations[0]);
+            return null;
+        }
+    }
+
+    private static class deleteTextAsync extends AsyncTask<Text,Void,Void>{
+
+        private TextDao dao;
+
+        public deleteTextAsync(TextDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Text... texts) {
+            dao.deleteText(texts[0]);
+            return null;
+        }
+    }
+
+
+
     public LiveData<List<Student>> getAllstudent(){
         return allStudentList;
     }

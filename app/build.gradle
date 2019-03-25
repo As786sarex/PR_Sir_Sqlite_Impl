@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'k31592962701'
+            storeFile file('D:/Signed Apks/pr_sir_front_end.jks')
+            storePassword 'k31592962701'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.wildcardenter.myfab.pr_sir_front_end"
@@ -14,21 +22,28 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     testImplementation 'junit:junit:4.12'
@@ -39,10 +54,10 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0-rc01'
     implementation 'androidx.drawerlayout:drawerlayout:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
-    implementation "androidx.lifecycle:lifecycle-runtime:2.0.0"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
-    implementation "androidx.room:room-runtime:2.1.0-alpha04"
+    implementation 'androidx.room:room-runtime:2.1.0-alpha04'
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha04"
-    implementation "androidx.paging:paging-runtime:2.1.0"
+    implementation 'androidx.paging:paging-runtime:2.1.0'
 }

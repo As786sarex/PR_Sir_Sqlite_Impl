@@ -17,11 +17,19 @@ public class EnrollViewModel extends AndroidViewModel {
 
     public EnrollViewModel(@NonNull Application application) {
         super(application);
-        repository=new StudentRepository(application);
-        allEnrollList=repository.getAllEnroll();
+        repository = new StudentRepository(application);
+        allEnrollList = repository.getAllEnroll();
     }
-    public void insrtEnroll(Enroll enroll){
+
+    public void insrtEnroll(Enroll enroll) {
         repository.insertEnroll(enroll);
     }
-    public LiveData<List<Enroll>> getAllEnrollList(){return allEnrollList;}
+
+    public void deleteEnroll(Enroll enroll) {
+        repository.deleteEnroll(enroll);
+    }
+
+    public LiveData<List<Enroll>> getAllEnrollList() {
+        return allEnrollList;
+    }
 }

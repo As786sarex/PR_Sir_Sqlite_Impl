@@ -44,6 +44,9 @@ public class EnrollAdapter extends RecyclerView.Adapter<EnrollAdapter.EnrollView
         this.enrolls=list;
         notifyDataSetChanged();
     }
+    public Enroll getItemAt(int position){
+        return enrolls.get(position);
+    }
 
     @Override
     public int getItemCount() {

@@ -44,6 +44,9 @@ public class TextAdapter extends RecyclerView.Adapter<TextAdapter.TextViewHolder
         this.textList = list;
         notifyDataSetChanged();
     }
+    public Text getItemAt(int position){
+        return textList.get(position);
+    }
 
     @Override
     public int getItemCount() {

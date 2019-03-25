@@ -9,7 +9,7 @@ import static androidx.room.ForeignKey.CASCADE;
 
 @Entity(tableName = "BOOK_ADAPTATION", primaryKeys = {"course", "sem"}
         , foreignKeys = @ForeignKey(entity = Text.class, parentColumns = "book_isbn",
-        childColumns = "book_isbn", onUpdate = CASCADE))
+        childColumns = "book_isbn", onUpdate = CASCADE,onDelete = CASCADE))
 public class Book_Adaptation {
 
 

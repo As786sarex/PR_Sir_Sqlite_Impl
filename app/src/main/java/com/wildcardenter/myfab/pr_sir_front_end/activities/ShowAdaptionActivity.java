@@ -1,8 +1,10 @@
 package com.wildcardenter.myfab.pr_sir_front_end.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +41,20 @@ public class ShowAdaptionActivity extends AppCompatActivity {
             adapter.setBook_adaptations(adapts);
             adapter.notifyDataSetChanged();
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                adaptViewModel.deleteAdapt(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                Toast.makeText(ShowAdaptionActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(adaptRecycler);
     }
 
     public void openAdaptEditActivity(View view) {

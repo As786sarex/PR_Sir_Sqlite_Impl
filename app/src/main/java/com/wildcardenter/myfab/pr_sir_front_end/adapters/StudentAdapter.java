@@ -45,6 +45,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentH
         notifyDataSetChanged();
     }
 
+    public Student getItemAt(int position){
+        return students.get(position);
+    }
+
     @Override
     public int getItemCount() {
         if (students!=null){

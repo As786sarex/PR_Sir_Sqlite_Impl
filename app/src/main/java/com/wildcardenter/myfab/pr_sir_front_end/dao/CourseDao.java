@@ -1,11 +1,13 @@
 package com.wildcardenter.myfab.pr_sir_front_end.dao;
 
 import com.wildcardenter.myfab.pr_sir_front_end.models.Course;
+import com.wildcardenter.myfab.pr_sir_front_end.models.Enroll;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -16,6 +18,9 @@ public interface CourseDao {
 
     @Insert(onConflict = REPLACE)
     void insertCourse(Course course);
+
+    @Delete
+    void deleteCourse(Course course);
 
     @Query("select * from COURSE order by course")
     LiveData<List<Course>> getAllCourses();

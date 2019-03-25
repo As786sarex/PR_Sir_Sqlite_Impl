@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "683aadd91a48e56458598b9ccce55ecb",
+    "identityHash": "0523915b6f5e0126a167e30d661bbfd9",
     "entities": [
       {
         "tableName": "STUDENT",
@@ -116,7 +116,7 @@
       },
       {
         "tableName": "BOOK_ADAPTATION",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`course` INTEGER NOT NULL, `sem` INTEGER NOT NULL, `book_isbn` INTEGER NOT NULL, PRIMARY KEY(`course`, `sem`), FOREIGN KEY(`book_isbn`) REFERENCES `TEXT`(`book_isbn`) ON UPDATE CASCADE ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`course` INTEGER NOT NULL, `sem` INTEGER NOT NULL, `book_isbn` INTEGER NOT NULL, PRIMARY KEY(`course`, `sem`), FOREIGN KEY(`book_isbn`) REFERENCES `TEXT`(`book_isbn`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "course",
@@ -148,7 +148,7 @@
         "foreignKeys": [
           {
             "table": "TEXT",
-            "onDelete": "NO ACTION",
+            "onDelete": "CASCADE",
             "onUpdate": "CASCADE",
             "columns": [
               "book_isbn"
@@ -201,7 +201,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"683aadd91a48e56458598b9ccce55ecb\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"0523915b6f5e0126a167e30d661bbfd9\")"
     ]
   }
 }

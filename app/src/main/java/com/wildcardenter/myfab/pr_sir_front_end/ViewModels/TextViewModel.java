@@ -16,22 +16,34 @@ public class TextViewModel extends AndroidViewModel {
     private StudentRepository repository;
     private LiveData<List<Text>> allTextList;
     private LiveData<List<TextByCs>> allTextByCs;
+
     public TextViewModel(@NonNull Application application) {
         super(application);
-        repository=new StudentRepository(application);
-        allTextList=repository.getAllText();
-        allTextByCs=repository.getAllTextListByCs();
+        repository = new StudentRepository(application);
+        allTextList = repository.getAllText();
+        allTextByCs = repository.getAllTextListByCs();
 
     }
-    public LiveData<List<Text>> getAllTextList(){return allTextList;}
-    public LiveData<List<TextByCs>> getAllTextByCs(){return allTextByCs;}
-    public void insertText(Text text){
+
+    public LiveData<List<Text>> getAllTextList() {
+        return allTextList;
+    }
+
+    public LiveData<List<TextByCs>> getAllTextByCs() {
+        return allTextByCs;
+    }
+
+    public void insertText(Text text) {
         repository.insertText(text);
+    }
+
+    public void deleteText(Text text) {
+        repository.deleteText(text);
     }
 
     @Override
     protected void onCleared() {
         super.onCleared();
-        repository=null;
+        repository = null;
     }
 }

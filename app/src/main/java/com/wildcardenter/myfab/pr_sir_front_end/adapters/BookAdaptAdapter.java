@@ -44,6 +44,9 @@ public class BookAdaptAdapter extends RecyclerView.Adapter<BookAdaptAdapter.Book
         this.book_adaptations=list;
         notifyDataSetChanged();
     }
+    public Book_Adaptation getItemAt(int position){
+        return book_adaptations.get(position);
+    }
 
     @Override
     public int getItemCount() {

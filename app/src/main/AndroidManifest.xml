@@ -28,7 +28,6 @@
             android:label="All Enrollments" />
         <activity
             android:name=".activities.LandingActivity"
-            android:label="Show All Queries"
             android:theme="@style/MyAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
