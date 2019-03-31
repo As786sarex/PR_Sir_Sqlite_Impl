@@ -34,51 +34,118 @@ public class StudentRepository {
     private LiveData<List<TextByCs>> allTextListByCs;
 
 
-
-    public StudentRepository(Application application){
-        StudentDatabase database=StudentDatabase.getDatabase(application);
-        studentDao=database.getStudentDao();
-        courseDao=database.getCourseDao();
-        enrollDao=database.getEnrollDao();
-        book_adapt_dao=database.getAdaptDao();
-        textDao=database.getTextDao();
-        allStudentList=studentDao.getAllStudents();
-        allCourseList=courseDao.getAllCourses();
-        allTextList=textDao.getAllText();
-        allEnrollList=enrollDao.getAllEnrolls();
-        allAdaptList=book_adapt_dao.getAllAdaptation();
-        allTextListByCs=textDao.getAllBookOfferedByCs();
+    public StudentRepository(Application application) {
+        StudentDatabase database = StudentDatabase.getDatabase(application);
+        studentDao = database.getStudentDao();
+        courseDao = database.getCourseDao();
+        enrollDao = database.getEnrollDao();
+        book_adapt_dao = database.getAdaptDao();
+        textDao = database.getTextDao();
+        allStudentList = studentDao.getAllStudents();
+        allCourseList = courseDao.getAllCourses();
+        allTextList = textDao.getAllText();
+        allEnrollList = enrollDao.getAllEnrolls();
+        allAdaptList = book_adapt_dao.getAllAdaptation();
+        allTextListByCs = textDao.getAllBookOfferedByCs();
 
     }
-    public LiveData<List<String>> getDeptByPublisher(String publisher){
-        return  courseDao.getDeptBySpecificPub(publisher);
-    }
-    public void insertStudent(Student student){
+
+    public void insertStudent(Student student) {
         new insertStudentAsync(studentDao).execute(student);
 
     }
-    public void insertCourse(Course course){
+
+    public void insertCourse(Course course) {
         new insertCourseAsync(courseDao).execute(course);
     }
-    public void insertText(Text text){
+
+    public void insertText(Text text) {
         new insertTextAsync(textDao).execute(text);
 
     }
-    public void insertEnroll(Enroll enroll){new insertEnrollAsync(enrollDao).execute(enroll);}
-    public void insertAdapt(Book_Adaptation adaptation){
+
+    public void insertEnroll(Enroll enroll) {
+        new insertEnrollAsync(enrollDao).execute(enroll);
+    }
+
+    public void insertAdapt(Book_Adaptation adaptation) {
         new insertAdaptAsync(book_adapt_dao).execute(adaptation);
     }
 
-    public void deleteStudent(Student student){ new deleteStudentAsync(studentDao).execute(student);}
-    public void deleteCourse(Course course){new deleteCourseAsync(courseDao).execute(course);}
-    public void deleteEnroll(Enroll enroll){new deleteEnrollAsync(enrollDao).execute(enroll);}
-    public void deleteAdaptation(Book_Adaptation book_adaptation){new deleteAdaptAsync(book_adapt_dao).execute(book_adaptation);}
-    public void deleteText(Text text){new deleteTextAsync(textDao).execute(text);}
+    public void deleteStudent(Student student) {
+        new deleteStudentAsync(studentDao).execute(student);
+    }
+
+    public void deleteCourse(Course course) {
+        new deleteCourseAsync(courseDao).execute(course);
+    }
+
+    public void deleteEnroll(Enroll enroll) {
+        new deleteEnrollAsync(enrollDao).execute(enroll);
+    }
+
+    public void deleteAdaptation(Book_Adaptation book_adaptation) {
+        new deleteAdaptAsync(book_adapt_dao).execute(book_adaptation);
+    }
+
+    public void deleteText(Text text) {
+        new deleteTextAsync(textDao).execute(text);
+    }
 
 
+    public void updateStudent(String reno, String nme, String mjor, String dob, String pk) {
+        new updateStudentAsync(studentDao).execute(reno, nme, mjor, dob, pk);
+    }
 
-    //All insertion asynctask is performed here
-    private static class insertStudentAsync extends AsyncTask<Student,Void,Void>{
+    public void updateEnroll(String regno, String course, String sem, String marks, String pk1, String pk2, String pk3) {
+        new updateEnrollAsync(enrollDao).execute(regno, course, sem, marks, pk1, pk2, pk3);
+    }
+
+    public void updateCourse(String course, String cname, String dept, String pk) {
+        new updateCourseAsync(courseDao).execute(course, cname, dept, pk);
+    }
+
+    public void updateAdapt(int course, int sem, int book_isbn, int pk1, int pk2) {
+        new updateAdaptAsync(book_adapt_dao).execute(course, sem, book_isbn, pk1, pk2);
+    }
+
+    public void updateText(String book_isbn, String book_title, String publisher, String author, String pk) {
+        new updateTextAsync(textDao).execute(book_isbn, book_title, publisher, author, pk);
+    }
+
+    public LiveData<List<Student>> getAllstudent() {
+        return allStudentList;
+    }
+
+    public LiveData<List<Course>> getAllCourse() {
+        return allCourseList;
+    }
+
+    public LiveData<List<Text>> getAllText() {
+        return allTextList;
+    }
+
+    public LiveData<List<Enroll>> getAllEnroll() {
+        return allEnrollList;
+    }
+
+    public LiveData<List<Book_Adaptation>> getAllAdapt() {
+        return allAdaptList;
+    }
+
+
+    //All deletion asyncTask is performed here
+
+    public LiveData<List<TextByCs>> getAllTextListByCs() {
+        return allTextListByCs;
+    }
+
+    public LiveData<List<String>> getDeptByPublisher(String publisher) {
+        return courseDao.getDeptBySpecificPub(publisher);
+    }
+
+    //All insertion asyncTask is performed here
+    private static class insertStudentAsync extends AsyncTask<Student, Void, Void> {
 
         private StudentDao dao;
 
@@ -92,7 +159,8 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class insertCourseAsync extends AsyncTask<Course,Void,Void>{
+
+    private static class insertCourseAsync extends AsyncTask<Course, Void, Void> {
 
         private CourseDao dao;
 
@@ -106,7 +174,8 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class insertTextAsync extends AsyncTask<Text,Void,Void>{
+
+    private static class insertTextAsync extends AsyncTask<Text, Void, Void> {
         TextDao dao;
 
         private insertTextAsync(TextDao dao) {
@@ -119,7 +188,8 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class insertEnrollAsync extends AsyncTask<Enroll,Void,Void>{
+
+    private static class insertEnrollAsync extends AsyncTask<Enroll, Void, Void> {
         private EnrollDao dao;
 
         private insertEnrollAsync(EnrollDao dao) {
@@ -132,7 +202,8 @@ public class StudentRepository {
             return null;
         }
     }
-    private static class insertAdaptAsync extends AsyncTask<Book_Adaptation,Void,Void>{
+
+    private static class insertAdaptAsync extends AsyncTask<Book_Adaptation, Void, Void> {
         private Book_Adapt_Dao dao;
 
         private insertAdaptAsync(Book_Adapt_Dao dao) {
@@ -146,14 +217,11 @@ public class StudentRepository {
         }
     }
 
-
-    //All deletion asynctask is performed here
-
-    private static class deleteStudentAsync extends AsyncTask<Student,Void,Void>{
+    private static class deleteStudentAsync extends AsyncTask<Student, Void, Void> {
 
         private StudentDao dao;
 
-        public deleteStudentAsync(StudentDao dao) {
+        deleteStudentAsync(StudentDao dao) {
             this.dao = dao;
         }
 
@@ -164,11 +232,11 @@ public class StudentRepository {
         }
     }
 
-    private static class deleteCourseAsync extends AsyncTask<Course,Void,Void>{
+    private static class deleteCourseAsync extends AsyncTask<Course, Void, Void> {
 
         private CourseDao dao;
 
-        public deleteCourseAsync(CourseDao dao) {
+        deleteCourseAsync(CourseDao dao) {
             this.dao = dao;
         }
 
@@ -179,11 +247,11 @@ public class StudentRepository {
         }
     }
 
-    private static class deleteEnrollAsync extends AsyncTask<Enroll,Void,Void>{
+    private static class deleteEnrollAsync extends AsyncTask<Enroll, Void, Void> {
 
         private EnrollDao dao;
 
-        public deleteEnrollAsync(EnrollDao dao) {
+        deleteEnrollAsync(EnrollDao dao) {
             this.dao = dao;
         }
 
@@ -194,11 +262,11 @@ public class StudentRepository {
         }
     }
 
-    private static class deleteAdaptAsync extends AsyncTask<Book_Adaptation,Void,Void>{
+    private static class deleteAdaptAsync extends AsyncTask<Book_Adaptation, Void, Void> {
 
         private Book_Adapt_Dao dao;
 
-        public deleteAdaptAsync(Book_Adapt_Dao dao) {
+        deleteAdaptAsync(Book_Adapt_Dao dao) {
             this.dao = dao;
         }
 
@@ -209,11 +277,11 @@ public class StudentRepository {
         }
     }
 
-    private static class deleteTextAsync extends AsyncTask<Text,Void,Void>{
+    private static class deleteTextAsync extends AsyncTask<Text, Void, Void> {
 
         private TextDao dao;
 
-        public deleteTextAsync(TextDao dao) {
+        deleteTextAsync(TextDao dao) {
             this.dao = dao;
         }
 
@@ -224,17 +292,80 @@ public class StudentRepository {
         }
     }
 
+    //Update AsyncTask done here
+    private static class updateStudentAsync extends AsyncTask<String, Void, Void> {
+        private StudentDao dao;
+
+        updateStudentAsync(StudentDao dao) {
+            this.dao = dao;
+        }
 
 
-    public LiveData<List<Student>> getAllstudent(){
-        return allStudentList;
+        @Override
+        protected Void doInBackground(String... strings) {
+            dao.updateStudent(strings[0], strings[1], strings[2], Integer.parseInt(strings[3]), strings[4]);
+            return null;
+        }
     }
-    public LiveData<List<Course>> getAllCourse(){return allCourseList; }
-    public LiveData<List<Text>> getAllText(){return allTextList;}
-    public LiveData<List<Enroll>> getAllEnroll(){return allEnrollList;}
-    public LiveData<List<Book_Adaptation >> getAllAdapt(){ return allAdaptList;}
-    public LiveData<List<TextByCs>> getAllTextListByCs(){return allTextListByCs;}
 
+    private static class updateEnrollAsync extends AsyncTask<String, Void, Void> {
+        private EnrollDao dao;
+
+        updateEnrollAsync(EnrollDao dao) {
+            this.dao = dao;
+        }
+
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            dao.updateEnroll(strings[0], Integer.parseInt(strings[1]), Integer.parseInt(strings[2]),
+                    Integer.parseInt(strings[3]), strings[4], Integer.parseInt(strings[5]), Integer.parseInt(strings[5]));
+            return null;
+        }
+    }
+
+    private static class updateCourseAsync extends AsyncTask<String, Void, Void> {
+        private CourseDao dao;
+
+        updateCourseAsync(CourseDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            dao.updateCourse(Integer.parseInt(strings[0]), strings[1], strings[2], Integer.parseInt(strings[3]));
+            return null;
+        }
+    }
+
+    private static class updateAdaptAsync extends AsyncTask<Integer, Void, Void> {
+        private Book_Adapt_Dao dao;
+
+        updateAdaptAsync(Book_Adapt_Dao adapt_dao) {
+            this.dao = adapt_dao;
+        }
+
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+            dao.updateAdaptation(integers[0], integers[1], integers[2], integers[3], integers[4]);
+            return null;
+        }
+    }
+
+    private static class updateTextAsync extends AsyncTask<String, Void, Void> {
+        private TextDao dao;
+
+        updateTextAsync(TextDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            dao.updateText(Integer.parseInt(strings[0]), strings[1], strings[2], strings[3], Integer.parseInt(strings[4]));
+            return null;
+        }
+    }
 
 
 }

@@ -9,17 +9,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alerter;
 import com.wildcardenter.myfab.pr_sir_front_end.R;
 import com.wildcardenter.myfab.pr_sir_front_end.ViewModels.StudentViewModel;
 import com.wildcardenter.myfab.pr_sir_front_end.adapters.StudentAdapter;
+import com.wildcardenter.myfab.pr_sir_front_end.helpers.SwipeToDeleteCallback;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Student;
 
 public class MainActivity extends AppCompatActivity {
     private static final int STUDENT_EDIT_RC =313 ;
+    public static final int STUDENT_UPDATE_RC=3500;
     private RecyclerView recyclerView;
     private StudentAdapter adapter;
     private StudentViewModel viewModel;
@@ -39,19 +43,40 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         });
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
+        SwipeToDeleteCallback callback=new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                viewModel.deleteStudent(adapter.getItemAt(viewHolder.getAdapterPosition()));
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                Toast.makeText(MainActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                if (direction==ItemTouchHelper.LEFT) {
+                    Alerter.create(MainActivity.this)
+                            .enableInfiniteDuration(true)
+                            .setDismissable(false)
+                            .setBackgroundColorInt(Color.GREEN)
+                            .setTitle("Delete Student Details?")
+                            .setText("Are You Sure You Want To Delete Student Detail?")
+                            .addButton("Confirm",R.style.AlertButton,v->{
+                                viewModel.deleteStudent(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                                Toast.makeText(MainActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                                Alerter.hide();
+                            })
+                            .addButton("Cancel",R.style.AlertButton,v->{
+                                Alerter.hide();
+                                adapter.notifyDataSetChanged();
+                            })
+                            .setIcon(R.drawable.ic_delete_sweep_black_24dp)
+                            .show();
+
+                }
+                else{
+                    Intent intent=new Intent(MainActivity.this,StudentEditActivity.class);
+                    Student student=adapter.getItemAt(viewHolder.getAdapterPosition());
+                    intent.putExtra("pk",student.getRegno());
+                    startActivityForResult(intent,STUDENT_UPDATE_RC);
+                }
             }
-        }).attachToRecyclerView(recyclerView);
+        };
+
+        new ItemTouchHelper(callback).attachToRecyclerView(recyclerView);
     }
 
     public void openStudentEdit(View view) {
@@ -73,8 +98,24 @@ public class MainActivity extends AppCompatActivity {
 
 
             Toast.makeText(this, "Student Saved", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (requestCode == STUDENT_UPDATE_RC && resultCode == RESULT_OK) {
+            if (data != null) {
+                final String name = data.getStringExtra("name");
+                final String regNo = data.getStringExtra("regNo");
+                final int bdate = data.getIntExtra("bdate",00000000);
+                final String major=data.getStringExtra("major");
+                final String pk=data.getStringExtra("prikey");
+                viewModel.updateStudent(regNo,name,major, String.valueOf(bdate),pk);
+            }
+
+
+            Toast.makeText(this, "Student Updated", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
             Toast.makeText(this, "Student Cancelled", Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
         }
     }
 }

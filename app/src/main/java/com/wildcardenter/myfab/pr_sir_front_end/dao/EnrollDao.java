@@ -22,4 +22,7 @@ public interface EnrollDao {
 
     @Query("select * from enroll order by regno")
     LiveData<List<Enroll>> getAllEnrolls();
+
+    @Query("UPDATE ENROLL SET regno=:regno,course=:course,sem=:sem,marks=:marks where regno like :pk1 and course=:pk2 and sem=:pk3")
+    void updateEnroll(String regno,int course,int sem,int marks,String pk1,int pk2,int pk3);
 }

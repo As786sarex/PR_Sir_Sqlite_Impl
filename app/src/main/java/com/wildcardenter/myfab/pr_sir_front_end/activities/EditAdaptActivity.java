@@ -13,11 +13,17 @@ import com.wildcardenter.myfab.pr_sir_front_end.R;
 
 public class EditAdaptActivity extends AppCompatActivity {
     private EditText editAdaptCourse,editAdaptSem,editAdaptBookIsbn;
+    int pk1,pk2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_adapt);
+        Bundle bundle=getIntent().getExtras();
+        if (bundle!=null){
+            pk1=bundle.getInt("pk1");
+            pk2=bundle.getInt("pk2");
+        }
         editAdaptCourse=findViewById(R.id.Edit_Adapt_Course);
         editAdaptSem=findViewById(R.id.Edit_Adapt_Sem);
         editAdaptBookIsbn=findViewById(R.id.Edit_Adapt_BookIsbn);
@@ -43,6 +49,8 @@ public class EditAdaptActivity extends AppCompatActivity {
                 intent.putExtra("adaptCourse",adaptCourse );
                 intent.putExtra("adaptSem", adaptSem);
                 intent.putExtra("adaptIsbn",adaptIsbn);
+                intent.putExtra("pk1",pk1);
+                intent.putExtra("pk2",pk2);
                 setResult(RESULT_OK, intent);
                 finish();
             }

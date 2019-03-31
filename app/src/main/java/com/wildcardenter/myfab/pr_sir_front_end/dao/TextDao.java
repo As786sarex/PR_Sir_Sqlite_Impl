@@ -23,13 +23,17 @@ public interface TextDao {
     @Delete
     void deleteText(Text text);
 
+    @Query("UPDATE TEXT SET book_isbn=:book_isbn,book_title=:book_title," +
+            "publisher=:publisher,author=:author where book_isbn=:pk")
+    void updateText(int book_isbn,String book_title,String publisher,String author,int pk);
+
     @Query("select * from TEXT order by book_isbn")
     LiveData<List<Text>> getAllText();
 
-    @Query("select course,book_isbn,book_title from text " +
-            "natural join course natural join book_adaptation where course in " +
-            "(select course from text natural join course natural join book_adaptation " +
-            "where dept like 'cse' group by course having count(course)>=2)")
+    @Query("select course,book_isbn,book_title from TEXT " +
+            "natural join COURSE natural join BOOK_ADAPTATION where course in " +
+            "(select course from TEXT natural join COURSE natural join BOOK_ADAPTATION " +
+            "where dept like 'cse' group by course having count(course)>2) order by book_title")
     LiveData<List<TextByCs>> getAllBookOfferedByCs();
 
 }

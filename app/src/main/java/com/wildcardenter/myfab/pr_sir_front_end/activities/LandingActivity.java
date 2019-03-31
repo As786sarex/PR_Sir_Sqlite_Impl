@@ -8,10 +8,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.tapadoo.alerter.Alerter;
 import com.wildcardenter.myfab.pr_sir_front_end.R;
 
 public class LandingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,6 +62,21 @@ public class LandingActivity extends AppCompatActivity implements NavigationView
         }
         else if (id==R.id.showAllBookByCs){
             startActivity(new Intent(this,BookByCsCourseActivity.class));
+        }
+        else if (id==R.id.showAbout){
+
+        }
+        else if (id==R.id.exit){
+            Alerter.create(this)
+                    .setDismissable(true)
+                    .setTitle("Exit?")
+                    .setText("Are You Sure You Want To Exit The Application?")
+                    .addButton("Confirm",R.style.AlertButton,v-> finish())
+                    .addButton("Cancel",R.style.AlertButton,v->Alerter.hide())
+                    .setIcon(R.drawable.alerter_ic_notifications)
+                    .setBackgroundColorInt(Color.parseColor("#FCEF5350"))
+                    .show();
+
         }
 
 

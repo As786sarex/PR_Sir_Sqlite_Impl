@@ -9,19 +9,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tapadoo.alerter.Alerter;
 import com.wildcardenter.myfab.pr_sir_front_end.R;
 import com.wildcardenter.myfab.pr_sir_front_end.ViewModels.BookAdaptViewModel;
 import com.wildcardenter.myfab.pr_sir_front_end.adapters.BookAdaptAdapter;
+import com.wildcardenter.myfab.pr_sir_front_end.helpers.SwipeToDeleteCallback;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Book_Adaptation;
 import com.wildcardenter.myfab.pr_sir_front_end.models.Course;
 
 public class ShowAdaptionActivity extends AppCompatActivity {
 
     private static final int ADAPT_EDIT_RC =444 ;
+    private static final int ADAPT_UPDATE_RC =8761 ;
 
     private RecyclerView adaptRecycler;
     private BookAdaptAdapter adapter;
@@ -42,19 +46,41 @@ public class ShowAdaptionActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         });
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
+        SwipeToDeleteCallback callback=new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                adaptViewModel.deleteAdapt(adapter.getItemAt(viewHolder.getAdapterPosition()));
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-                Toast.makeText(ShowAdaptionActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                if (direction == ItemTouchHelper.LEFT) {
+                    Alerter.create(ShowAdaptionActivity.this)
+                            .enableInfiniteDuration(true)
+                            .setDismissable(false)
+                            .setBackgroundColorInt(Color.GREEN)
+                            .setTitle("Delete Book Adoption Details?")
+                            .setText("Are You Sure You Want To Delete Book Adoption Detail?")
+                            .addButton("Confirm", R.style.AlertButton, v -> {
+                                adaptViewModel.deleteAdapt(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                                Toast.makeText(ShowAdaptionActivity.this, "deleted", Toast.LENGTH_SHORT).show();
+                                Alerter.hide();
+                            })
+                            .addButton("Cancel", R.style.AlertButton, v -> {
+                                Alerter.hide();
+                                adapter.notifyDataSetChanged();
+                            })
+                            .setIcon(R.drawable.ic_delete_sweep_black_24dp)
+                            .show();
+
+                } else {
+                    Intent intent = new Intent(ShowAdaptionActivity.this, EditAdaptActivity.class);
+                    Book_Adaptation adaptation = adapter.getItemAt(viewHolder.getAdapterPosition());
+                    intent.putExtra("pk1", adaptation.getCourse());
+                    intent.putExtra("pk2",adaptation.getSem());
+                    startActivityForResult(intent, ADAPT_UPDATE_RC);
+                }
+
             }
-        }).attachToRecyclerView(adaptRecycler);
+        };
+
+        new ItemTouchHelper(callback).attachToRecyclerView(adaptRecycler);
     }
 
     public void openAdaptEditActivity(View view) {
@@ -76,8 +102,25 @@ public class ShowAdaptionActivity extends AppCompatActivity {
 
 
             Toast.makeText(this, "Adaptation Saved", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if (requestCode == ADAPT_UPDATE_RC && resultCode == RESULT_OK) {
+            if (data != null) {
+                final int adaptCourse = data.getIntExtra("adaptCourse",1);
+                final int adaptSem = data.getIntExtra("adaptSem",1);
+                final int adaptIsbn = data.getIntExtra("adaptIsbn", 1);
+                final int pk1=data.getIntExtra("pk1",9999);
+                final int pk2=data.getIntExtra("pk2",9999);
+                adaptViewModel.updateAdapt(adaptCourse,adaptSem,adaptIsbn,pk1,pk2);
+
+            }
+
+
+            Toast.makeText(this, "Adaptation Saved", Toast.LENGTH_SHORT).show();
+        }
+
+        else {
             Toast.makeText(this, "Adaptation Cancelled", Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
         }
     }
 }

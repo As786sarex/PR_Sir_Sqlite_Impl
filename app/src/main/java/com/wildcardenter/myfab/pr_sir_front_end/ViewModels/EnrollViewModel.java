@@ -29,6 +29,10 @@ public class EnrollViewModel extends AndroidViewModel {
         repository.deleteEnroll(enroll);
     }
 
+    public void updateEnroll(String regno,String course,String sem,String  marks,String pk1,String pk2,String pk3){
+        repository.updateEnroll(regno,course,sem,marks,pk1,pk2,pk3);
+    }
+
     public LiveData<List<Enroll>> getAllEnrollList() {
         return allEnrollList;
     }

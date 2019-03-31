@@ -21,6 +21,9 @@ public interface Book_Adapt_Dao {
     @Delete
     void deleteAdaptation(Book_Adaptation book_adaptation);
 
+    @Query("UPDATE BOOK_ADAPTATION SET course=:course,sem=:sem,book_isbn=:book_isbn where course=:pk1 and sem=:pk2")
+    void updateAdaptation(int course,int sem,int book_isbn,int pk1,int pk2);
+
     @Query("select * from BOOK_ADAPTATION order by book_isbn")
     LiveData<List<Book_Adaptation>> getAllAdaptation();
 }

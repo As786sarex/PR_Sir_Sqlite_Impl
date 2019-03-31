@@ -13,11 +13,17 @@ import com.wildcardenter.myfab.pr_sir_front_end.R;
 
 public class CourseEditActivity extends AppCompatActivity {
     private EditText editCourse,editCname,editCdept;
+    private int pk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_edit);
+
+        Bundle bundle=getIntent().getExtras();
+        if (bundle!=null){
+            pk=bundle.getInt("pk");
+        }
         editCourse=findViewById(R.id.Edit_Course);
         editCdept=findViewById(R.id.Edit_Course_Dept);
         editCname=findViewById(R.id.Edit_Course_Name);
@@ -42,6 +48,7 @@ public class CourseEditActivity extends AppCompatActivity {
                 intent.putExtra("Cname",cname );
                 intent.putExtra("Cdept", cdept);
                 intent.putExtra("Ccourse",course);
+                intent.putExtra("pkk",pk);
                 setResult(RESULT_OK, intent);
                 finish();
             }

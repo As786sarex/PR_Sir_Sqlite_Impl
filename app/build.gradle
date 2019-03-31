@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     signingConfigs {
@@ -60,4 +62,10 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.1.0-alpha04'
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha04"
     implementation 'androidx.paging:paging-runtime:2.1.0'
+    implementation 'com.airbnb.android:lottie:2.8.0'
+    implementation 'com.tapadoo.android:alerter:4.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

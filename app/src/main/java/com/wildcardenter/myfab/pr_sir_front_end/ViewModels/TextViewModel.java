@@ -41,6 +41,10 @@ public class TextViewModel extends AndroidViewModel {
         repository.deleteText(text);
     }
 
+    public void updateText(String book_isbn, String book_title, String publisher, String author, String pk){
+        repository.updateText(book_isbn,book_title,publisher,author,pk);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

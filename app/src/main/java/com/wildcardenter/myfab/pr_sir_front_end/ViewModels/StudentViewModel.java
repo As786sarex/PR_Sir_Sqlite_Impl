@@ -37,4 +37,9 @@ public class StudentViewModel extends AndroidViewModel {
     public void deleteStudent(Student student) {
         repository.deleteStudent(student);
     }
+
+    public void updateStudent(String reno,String nme,String mjor,String dob,String pk){
+        repository.updateStudent(reno,nme,mjor,dob,pk);
+    }
+
 }

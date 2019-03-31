@@ -9,6 +9,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
 
@@ -20,10 +21,11 @@ public interface StudentDao {
     @Delete
     void deleteStudent(Student student);
 
+
     @Query("select * from STUDENT order by name")
     LiveData<List<Student>> getAllStudents();
 
-    @Query("select * from STUDENT where name=:name")
-    LiveData<List<Student>> getStudentByCondition(String name);
+    @Query("Update STUDENT SET regno=:reno,name=:nme,major=:mjor,bdate=:dob WHERE regno like :pk")
+    void updateStudent(String reno,String nme,String mjor,int dob,String pk);
 
 }

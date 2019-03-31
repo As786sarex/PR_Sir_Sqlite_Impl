@@ -37,6 +37,10 @@ public class CourseViewModel extends AndroidViewModel {
         repository.deleteCourse(course);
     }
 
+    public void updateCourse(String course, String cname, String dept, String pk){
+        repository.updateCourse(course,cname,dept,pk);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

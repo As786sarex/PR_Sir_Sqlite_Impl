@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,11 +14,16 @@ import com.wildcardenter.myfab.pr_sir_front_end.R;
 
 public class EditTextActivity extends AppCompatActivity {
     private EditText editIsbn,editTitle,editPublisher,editAuthor;
+    int pk1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_text);
+        Bundle bundle=getIntent().getExtras();
+        if (bundle!=null){
+            pk1=bundle.getInt("pk1");
+        }
         editIsbn=findViewById(R.id.Edit_Text_Book_isbn);
         editTitle=findViewById(R.id.Edit_book_title);
         editPublisher=findViewById(R.id.Edit_book_publisher);
@@ -46,6 +52,7 @@ public class EditTextActivity extends AppCompatActivity {
                 intent.putExtra("title", title);
                 intent.putExtra("publisher",publisher);
                 intent.putExtra("author",author);
+                intent.putExtra("pk1",pk1);
                 setResult(RESULT_OK, intent);
                 finish();
             }

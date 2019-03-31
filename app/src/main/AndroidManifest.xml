@@ -10,25 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.AboutUsActivity"></activity>
         <activity
-            android:name=".activities.BookByCsCourseActivity"
-            android:label="Books Offered By CSE" />
-        <activity android:name=".activities.DeptByPublisherActivity" />
-        <activity android:name=".activities.EditAdaptActivity" />
-        <activity
-            android:name=".activities.ShowAdaptionActivity"
-            android:label="All Book Adaption" />
-        <activity android:name=".activities.EditTextActivity" />
-        <activity
-            android:name=".activities.ShowTextActivity"
-            android:label="All Text Books" />
-        <activity android:name=".activities.EditEnrollActivity" />
-        <activity
-            android:name=".activities.ShowEnrollActivity"
-            android:label="All Enrollments" />
-        <activity
-            android:name=".activities.LandingActivity"
-            android:theme="@style/MyAppTheme">
+            android:name=".activities.SplashActivity"
+            android:theme="@style/MyAppTheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -36,11 +21,40 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CourseEditActivity" />
+        <activity
+            android:name=".activities.BookByCsCourseActivity"
+            android:label="Books Offered By CSE" />
+        <activity android:name=".activities.DeptByPublisherActivity" />
+        <activity
+            android:name=".activities.EditAdaptActivity"
+            android:label="Insert Book Adoption" />
+        <activity
+            android:name=".activities.ShowAdaptionActivity"
+            android:label="All Book Adoption" />
+        <activity
+            android:name=".activities.EditTextActivity"
+            android:label="Insert Text" />
+        <activity
+            android:name=".activities.ShowTextActivity"
+            android:label="All Text Books" />
+        <activity
+            android:name=".activities.EditEnrollActivity"
+            android:label="Insert Enroll" />
+        <activity
+            android:name=".activities.ShowEnrollActivity"
+            android:label="All Enrollments" />
+        <activity
+            android:name=".activities.LandingActivity"
+            android:theme="@style/MyAppTheme"></activity>
+        <activity
+            android:name=".activities.CourseEditActivity"
+            android:label="Insert Course" />
         <activity
             android:name=".activities.ShowCourseActivity"
             android:label="All Courses" />
-        <activity android:name=".activities.StudentEditActivity" />
+        <activity
+            android:name=".activities.StudentEditActivity"
+            android:label="Insert Student" />
         <activity
             android:name=".activities.MainActivity"
             android:label="All Students" />

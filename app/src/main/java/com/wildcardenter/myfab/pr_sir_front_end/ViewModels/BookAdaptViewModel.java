@@ -33,8 +33,11 @@ public class BookAdaptViewModel extends AndroidViewModel {
         return allBookList;
     }
 
-    @Override
+    public void updateAdapt(int course, int sem, int book_isbn, int pk1, int pk2){
+        repository.updateAdapt(course,sem,book_isbn,pk1,pk2);
+    }
 
+    @Override
     protected void onCleared() {
         super.onCleared();
         repository = null;

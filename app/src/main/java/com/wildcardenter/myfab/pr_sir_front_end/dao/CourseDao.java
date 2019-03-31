@@ -22,6 +22,9 @@ public interface CourseDao {
     @Delete
     void deleteCourse(Course course);
 
+    @Query("UPDATE COURSE SET course=:course,cname=:cname,dept=:dept where course=:pk")
+    void updateCourse(int course,String cname,String dept,int pk);
+
     @Query("select * from COURSE order by course")
     LiveData<List<Course>> getAllCourses();
 
@@ -29,5 +32,6 @@ public interface CourseDao {
             " EXCEPT " +
             "select dept from course natural join book_adaptation natural join text where publisher not like :pub")
     LiveData<List<String>> getDeptBySpecificPub(String pub);
+
 
 }
