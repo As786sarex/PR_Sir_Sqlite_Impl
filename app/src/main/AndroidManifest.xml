@@ -10,7 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.AboutUsActivity"></activity>
+        <activity android:name=".activities.AboutUsActivity" android:theme="@style/MyAppTheme2">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/MyAppTheme1">
@@ -45,7 +49,7 @@
             android:label="All Enrollments" />
         <activity
             android:name=".activities.LandingActivity"
-            android:theme="@style/MyAppTheme"></activity>
+            android:theme="@style/MyAppTheme"/>
         <activity
             android:name=".activities.CourseEditActivity"
             android:label="Insert Course" />

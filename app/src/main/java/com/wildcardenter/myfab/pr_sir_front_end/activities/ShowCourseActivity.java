@@ -51,7 +51,7 @@ public class ShowCourseActivity extends AppCompatActivity {
                     Alerter.create(ShowCourseActivity.this)
                             .enableInfiniteDuration(true)
                             .setDismissable(false)
-                            .setBackgroundColorInt(Color.GREEN)
+                            .setBackgroundColorInt(Color.parseColor("#EF5350"))
                             .setTitle("Delete Course Details?")
                             .setText("Are You Sure You Want To Delete Course Detail?")
                             .addButton("Confirm", R.style.AlertButton, v -> {

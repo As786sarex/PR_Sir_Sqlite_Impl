@@ -54,7 +54,7 @@ public class ShowTextActivity extends AppCompatActivity {
                     Alerter.create(ShowTextActivity.this)
                             .enableInfiniteDuration(true)
                             .setDismissable(false)
-                            .setBackgroundColorInt(Color.GREEN)
+                            .setBackgroundColorInt(Color.parseColor("#EF5350"))
                             .setTitle("Delete Book Adoption Details?")
                             .setText("Are You Sure You Want To Delete Book Adoption Detail?")
                             .addButton("Confirm", R.style.AlertButton, v -> {
@@ -98,7 +98,7 @@ public class ShowTextActivity extends AppCompatActivity {
             }
 
 
-            Toast.makeText(this, "Course Saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Text Saved", Toast.LENGTH_SHORT).show();
         }
         if (requestCode == TEXT_UPDATE_RC && resultCode == RESULT_OK) {
             if (data != null) {
@@ -111,11 +111,12 @@ public class ShowTextActivity extends AppCompatActivity {
             }
 
 
-            Toast.makeText(this, "Course Saved", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Text Updated", Toast.LENGTH_SHORT).show();
         }
 
         else {
-            Toast.makeText(this, "Course Cancelled", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Text Cancelled", Toast.LENGTH_SHORT).show();
+            adapter.notifyDataSetChanged();
         }
     }
 

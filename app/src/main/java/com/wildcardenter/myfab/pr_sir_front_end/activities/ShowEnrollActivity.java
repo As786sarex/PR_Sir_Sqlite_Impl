@@ -47,7 +47,7 @@ public class ShowEnrollActivity extends AppCompatActivity {
                     Alerter.create(ShowEnrollActivity.this)
                             .enableInfiniteDuration(true)
                             .setDismissable(false)
-                            .setBackgroundColorInt(Color.GREEN)
+                            .setBackgroundColorInt(Color.parseColor("#EF5350"))
                             .setTitle("Delete Enroll Details?")
                             .setText("Are You Sure You Want To Delete Enroll Detail?")
                             .addButton("Confirm", R.style.AlertButton, v -> {

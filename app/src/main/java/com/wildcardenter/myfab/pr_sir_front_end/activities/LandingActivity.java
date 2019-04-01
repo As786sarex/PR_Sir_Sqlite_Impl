@@ -64,7 +64,7 @@ public class LandingActivity extends AppCompatActivity implements NavigationView
             startActivity(new Intent(this,BookByCsCourseActivity.class));
         }
         else if (id==R.id.showAbout){
-
+            startActivity(new Intent(this,AboutUsActivity.class));
         }
         else if (id==R.id.exit){
             Alerter.create(this)

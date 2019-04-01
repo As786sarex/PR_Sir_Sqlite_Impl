@@ -53,7 +53,7 @@ public class ShowAdaptionActivity extends AppCompatActivity {
                     Alerter.create(ShowAdaptionActivity.this)
                             .enableInfiniteDuration(true)
                             .setDismissable(false)
-                            .setBackgroundColorInt(Color.GREEN)
+                            .setBackgroundColorInt(Color.parseColor("#EF5350"))
                             .setTitle("Delete Book Adoption Details?")
                             .setText("Are You Sure You Want To Delete Book Adoption Detail?")
                             .addButton("Confirm", R.style.AlertButton, v -> {

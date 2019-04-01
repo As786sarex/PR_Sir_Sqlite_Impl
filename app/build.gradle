@@ -65,6 +65,7 @@ dependencies {
     implementation 'com.airbnb.android:lottie:2.8.0'
     implementation 'com.tapadoo.android:alerter:4.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
 }
 repositories {
     mavenCentral()
